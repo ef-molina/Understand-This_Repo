@@ -1,0 +1,23 @@
+name: Docs – Onboarding freshness
+on:
+  push:
+    paths-ignore:
+      - 'docs/**'
+      - '**/*.md'
+  pull_request:
+    paths-ignore:
+      - 'docs/**'
+      - '**/*.md'
+jobs:
+  nudge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Detect important changes
+        run: echo "If core folders changed, ensure docs/Onboarding.md is updated."
+      - name: Leave PR comment
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          message: |
+            Heads up! Project structure changed. Please check **docs/Onboarding.md** stays accurate (entry points, folder tour, quickstart).
