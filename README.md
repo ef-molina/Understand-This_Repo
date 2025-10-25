@@ -111,7 +111,17 @@ You can deploy this site anywhere static hosting is supported:
 2. Framework preset: **Vite**
 3. Auto-deploy from `main` branch
 
-### GitHub Pages (optional)
+### GitHub Pages (automated)
+The site is configured to automatically deploy to GitHub Pages when you push to the `main` branch.
+
+**Setup:**
+1. Go to your repository **Settings** → **Pages**
+2. Under **Build and deployment**, select **Source**: GitHub Actions
+3. Push to `main` branch to trigger deployment
+
+The workflow (`.github/workflows/deploy-pages.yml`) will automatically build and deploy your site to `https://<username>.github.io/Understand-This_Repo/`
+
+**Manual deployment:**
 ```bash
 npm run build
 npx gh-pages -d dist
